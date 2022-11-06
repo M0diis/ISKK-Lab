@@ -22,7 +22,7 @@ jobs:
       working-directory: ./frontend/
       run: |
         npm install
-        npm build
+        npm run-script build
 
   build-v16:
     runs-on: ubuntu-latest
