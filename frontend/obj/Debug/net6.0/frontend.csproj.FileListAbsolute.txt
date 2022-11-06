@@ -1,0 +1,7 @@
+C:\Users\modes\Desktop\example-react (1)\example-react\frontend\obj\Debug\net6.0\frontend.csproj.AssemblyReference.cache
+C:\Users\modes\Desktop\example-react (1)\example-react\frontend\obj\Debug\net6.0\spa.proxy.json
+C:\Users\modes\Desktop\example-react (1)\example-react\frontend\obj\Debug\net6.0\frontend.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\modes\Desktop\example-react (1)\example-react\frontend\obj\Debug\net6.0\frontend.AssemblyInfoInputs.cache
+C:\Users\modes\Desktop\example-react (1)\example-react\frontend\obj\Debug\net6.0\frontend.AssemblyInfo.cs
+C:\Users\modes\Desktop\example-react (1)\example-react\frontend\obj\Debug\net6.0\frontend.csproj.CoreCompileInputs.cache
+C:\Users\modes\Desktop\example-react (1)\example-react\frontend\obj\Debug\net6.0\frontend.MvcApplicationPartsAssemblyInfo.cache

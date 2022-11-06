@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "MLW3+kEMQiP67zGFCkkmdDwuVbZ7bdb7J5WtjjuYoJDhEajjlRbJ79O0lPsy2Vd53YadhuriJWDSf3UZfNUQgQ==",
+  "success": true,
+  "projectFilePath": "F:\\Studijos\\Informaciniu-sistemu-kurimas-karkasais\\LD2\\karkasai-back-front\\example-react\\frontend\\frontend.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\modes\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\6.0.9\\microsoft.aspnetcore.spaproxy.6.0.9.nupkg.sha512",
+    "C:\\Users\\modes\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.0\\microsoft.visualstudio.azure.containers.tools.targets.1.17.0.nupkg.sha512"
+  ],
+  "logs": []
+}

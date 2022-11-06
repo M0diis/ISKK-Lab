@@ -1,0 +1,74 @@
+{
+  "format": 1,
+  "restore": {
+    "F:\\Studijos\\Informaciniu-sistemu-kurimas-karkasais\\LD2\\karkasai-back-front\\example-react\\frontend\\frontend.csproj": {}
+  },
+  "projects": {
+    "F:\\Studijos\\Informaciniu-sistemu-kurimas-karkasais\\LD2\\karkasai-back-front\\example-react\\frontend\\frontend.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\Studijos\\Informaciniu-sistemu-kurimas-karkasais\\LD2\\karkasai-back-front\\example-react\\frontend\\frontend.csproj",
+        "projectName": "frontend",
+        "projectPath": "F:\\Studijos\\Informaciniu-sistemu-kurimas-karkasais\\LD2\\karkasai-back-front\\example-react\\frontend\\frontend.csproj",
+        "packagesPath": "C:\\Users\\modes\\.nuget\\packages\\",
+        "outputPath": "F:\\Studijos\\Informaciniu-sistemu-kurimas-karkasais\\LD2\\karkasai-back-front\\example-react\\frontend\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\modes\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.SpaProxy": {
+              "target": "Package",
+              "version": "[6.0.9, )"
+            },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.17.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "http://localhost:3000",
+"LaunchCommand": "npm start",
+"WorkingDirectory": "C:\\Users\\modes\\Desktop\\example-react (1)\\example-react\\frontend\\./",
+"MaxTimeoutInSeconds": "120"
+}
+}
