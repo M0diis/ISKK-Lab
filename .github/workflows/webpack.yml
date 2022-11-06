@@ -21,6 +21,7 @@ jobs:
     - name: Build
       working-directory: ./frontend/
       run: |
+        npm install
         npm build
 
   build-v16:
@@ -37,6 +38,7 @@ jobs:
     - name: Build
       working-directory: ./frontend/
       run: |
+        npm install
         npm run build
 
   build-v18:
@@ -53,4 +55,5 @@ jobs:
     - name: Build
       working-directory: ./frontend/
       run: |
+        npm install
         npm run build
