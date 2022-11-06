@@ -7,22 +7,50 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build-v14:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x]
     
     steps:
     - uses: actions/checkout@v3
 
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js 14.x
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 14.x
 
     - name: Build
       working-directory: ./frontend/
       run: |
         npm build
+
+  build-v16:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js 16.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
+
+    - name: Build
+      working-directory: ./frontend/
+      run: |
+        npm run build
+
+  build-v18:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js 18.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18.x
+
+    - name: Build
+      working-directory: ./frontend/
+      run: |
+        npm run build
