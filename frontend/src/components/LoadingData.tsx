@@ -1,4 +1,4 @@
-﻿function LoadingData(props: any) {
+function LoadingData(props: any) {
     if(props.appState.isInitialized && !props.appState.isLoading && !props.appState.isLoaded) 
     {
         return (
