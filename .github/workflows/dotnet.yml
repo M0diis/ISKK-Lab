@@ -21,6 +21,6 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore ./dotnet/react-dotnet.sln
+      run: dotnet restore ./dotnet/backend
     - name: Build
-      run: dotnet build ./dotnet/react-dotnet.sln --no-restore
+      run: dotnet build ./dotnet/backend --no-restore
