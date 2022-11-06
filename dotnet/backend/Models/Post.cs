@@ -55,3 +55,33 @@ public class PostForListing
 		};
 	}
 }
+
+public class PostForCreateUpdate
+{
+	/// <summary>
+	/// Title.
+	/// </summary>
+	public string Title { get; set; }
+
+	/// <summary>
+	/// Content.
+	/// </summary>
+	public string Content { get; set; }
+	
+	/// <summary>
+	/// User ID.
+	/// </summary>
+	public int FK_UserID { get; set; }
+	
+	
+	/// <summary>
+	/// Copy data to DB entity. Will not copy ID field.
+	/// </summary>
+	/// <param name="post">DB entity to fill in.</param>
+	public void ToDatabase(Posts post)
+	{
+		post.content = Content;
+		post.title = Title;
+		post.fk_userId = FK_UserID;
+	}
+}

@@ -122,7 +122,7 @@ function Reviews()
     // Render component HTML
     return (
         <>
-            <br></br>
+            <br/>
             <div className="container">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-lg-10 col-xl-10">
@@ -145,7 +145,7 @@ function Reviews()
 
                                 <p className="text-muted text-center mb-0 px-md-2 small">Other reviews are shown below.</p>
 
-                                <br></br>
+                                <br/>
                             </>
                         }
 
@@ -153,7 +153,7 @@ function Reviews()
                         
 
                     </div>
-                    <br></br>
+                    <br/>
                 </div>
             </div>
         </>

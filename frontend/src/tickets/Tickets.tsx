@@ -113,7 +113,7 @@ function Tickets()
                             <small>{ ticket.closed ? 'Closed' : 'Open' }</small>
                         </a>
                     </div>
-                    <br></br>
+                    <br/>
                 </>
             );
         });
@@ -139,7 +139,7 @@ function Tickets()
     // Render component HTML
     return (
         <>
-            <br></br>
+            <br/>
             <div className="container">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-lg-8 col-xl-8">
@@ -167,7 +167,7 @@ function Tickets()
                                 <button type="submit" className="btn btn-sm btn-success btn-lg mb-1">Submit</button>
                             </form>
 
-                            <br></br>
+                            <br/>
 
                             <input type="text" id="topic_search" name="topic_search" className="form-control" />
                             <label className="form-label">Search by ticket subject</label>

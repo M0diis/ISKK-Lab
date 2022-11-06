@@ -7,7 +7,7 @@ function Contact()
 	// Render component HTML
 	const html =
 		<>
-			<br></br>
+			<br/>
 			<div className="container">
 				<section className="mb-4">
 					<h2 className="h1-responsive font-weight-bold text-center my-4">CONTACT ME</h2>
@@ -36,7 +36,7 @@ function Contact()
 									</div>
 								</div>
 
-								<br></br>
+								<br/>
 
 
 								<div className="row">
@@ -49,7 +49,7 @@ function Contact()
 									</div>
 								</div>
 
-								<br></br>
+								<br/>
 
 								<div className="row">
 									<div className="col-md-12">
@@ -60,7 +60,7 @@ function Contact()
 									</div>
 								</div>
 								
-								<br></br>
+								<br/>
 
 								<div className="text-center text-md-left">
 									<button type="submit" className="btn btn-primary">Send</button>
@@ -68,10 +68,10 @@ function Contact()
 							</form>
 						</div>
 
-						<br></br>
+						<br/>
 
 						<div className="col-md-3">
-							<br></br>
+							<br/>
 							<ul className="list-unstyled mb-0">
 								<ul className="contact-info">
 									<li><i className="fa fa-phone"><a href="tel:+37063660905">+37063660905</a></i></li>

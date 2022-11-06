@@ -15,6 +15,15 @@ export type {
     PostForList
 }
 
+class PostForCreateUpdate {
+    title: string = "";
+    content: string = "";
+}
+
+export {
+    PostForCreateUpdate
+}
+
 /**
  * Review entity for lists.
  */

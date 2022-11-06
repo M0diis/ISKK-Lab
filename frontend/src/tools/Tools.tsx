@@ -7,7 +7,7 @@ function Tools()
     // Render component HTML
     const html =
         <>
-            <br></br>
+            <br/>
             <div style={{ height: "80%" }} className="container justify-content-center align-items-center">
                 <div className="row">
                     <div className="col-md-12">

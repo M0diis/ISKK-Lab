@@ -6,9 +6,9 @@ function About() {
 	// Render component HTML
 	return (
 		<>
-		<br></br>
+		<br/>
 		<div style={{ height: "80%" }} className="d-flex container justify-content-center align-items-center">
-			<br></br>
+			<br/>
 			<div className="row g-3 align-items-center">
 				<div className="col-md-6 align-items-center">
 						<div>

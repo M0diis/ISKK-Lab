@@ -7,6 +7,7 @@ import backend from 'app/backend';
 
 import { PostForList } from 'models/Entities';
 import LoadingData from "../components/LoadingData";
+import {notifyFailure, notifySuccess} from "../app/notify";
 
 /**
  * Component state.
@@ -18,7 +19,7 @@ class State
     isLoaded: boolean = false;
 
     posts: PostForList[] = [];
-
+ 
     isDeleting: boolean = false;
 
     /**
@@ -37,10 +38,10 @@ class State
  */
 function Home()
 {
-    //get state container and state updater
+    // Get state container and state updater
     const [state, updateState] = useState(new State());
 
-    //get router stuff
+    // Get router stuff
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -58,7 +59,31 @@ function Home()
         })
     }
 
-
+    const onDelete = (id: any) => {
+        update(() => {
+            backend.get(
+                config.backendUrl + "/post/delete",
+                {
+                    params : {
+                        id : id
+                    }
+                }
+            )
+                .then(resp => {
+                    update(() => location.state = "refresh");
+                    
+                    notifySuccess("Post has been deleted.");
+                })
+                .catch(err => {
+                    //notify about operation failure
+                    const msg =
+                        `Deletion of entity '${id}' has failed. ` +
+                        `either entity is not deletable or there was backend failure.`;
+                    notifyFailure(msg);
+                })
+        });
+    }
+    
     // (re)initialize
     if (!state.isInitialized || location.state === "refresh")
     {
@@ -109,9 +134,8 @@ function Home()
                                 <p className="text-muted">{ post.createdTimestamp }</p>
 
                                 {appState.userAdmin &&
-                                <form method="post" action="_">
-                                    <button type="submit" className="btn btn-sm btn-danger">Delete</button>
-                                </form>
+                                    <button type="button" onClick={() => onDelete(post.id)} className="btn btn-sm btn-danger">Delete</button>
+                                    
                                 }
 
                             </div>
@@ -124,9 +148,9 @@ function Home()
     // Render component HTML
     return (
         <>
-            <br></br>
+            <br/>
                 <div className="container">
-                <br></br>
+                <br/>
                         <div className="row d-flex justify-content-center align-items-center h-100">
 
                             <div className="col-lg-8 col-xl-8 text-center">
