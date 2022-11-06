@@ -135,11 +135,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Studijos\\Informaciniu-sistemu-kurimas-karkasais\\LD2\\karkasai-back-front\\example-react\\frontend\\frontend.csproj",
+      "projectUniqueName": "F:\\Studijos\\Informaciniu-sistemu-kurimas-karkasais\\LD2\\karkasai-back-front\\Labaratorinis\\frontend\\frontend.csproj",
       "projectName": "frontend",
-      "projectPath": "F:\\Studijos\\Informaciniu-sistemu-kurimas-karkasais\\LD2\\karkasai-back-front\\example-react\\frontend\\frontend.csproj",
+      "projectPath": "F:\\Studijos\\Informaciniu-sistemu-kurimas-karkasais\\LD2\\karkasai-back-front\\Labaratorinis\\frontend\\frontend.csproj",
       "packagesPath": "C:\\Users\\modes\\.nuget\\packages\\",
-      "outputPath": "F:\\Studijos\\Informaciniu-sistemu-kurimas-karkasais\\LD2\\karkasai-back-front\\example-react\\frontend\\obj\\",
+      "outputPath": "F:\\Studijos\\Informaciniu-sistemu-kurimas-karkasais\\LD2\\karkasai-back-front\\Labaratorinis\\frontend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\modes\\AppData\\Roaming\\NuGet\\NuGet.Config"

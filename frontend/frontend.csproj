@@ -13,6 +13,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <UserSecretsId>c6c93c57-71d6-47f7-824f-2726b7376e53</UserSecretsId>
+    <ApplicationIcon>build\favicon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>

@@ -8,6 +8,8 @@
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
     <DockerServiceName>frontend</DockerServiceName>
 	<DockerDevelopmentMode>Regular</DockerDevelopmentMode>
+	<Configurations>Debug</Configurations>
+	<Platforms>AnyCPU</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
