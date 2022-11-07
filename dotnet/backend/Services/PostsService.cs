@@ -24,7 +24,7 @@ public class PostsService : IPostsService
         return Task.FromResult(_postsRepository.FindAll().ToList());
     }
 
-    public Task<PostsEntity> GetOneById(int id)
+    public Task<PostsEntity> GetOneByIdAsync(int id)
     {
         return _postsRepository.FindByCondition(x => x.id == id).FirstOrDefaultAsync();
     }

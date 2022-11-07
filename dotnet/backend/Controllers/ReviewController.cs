@@ -1,10 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using modkaz.Backend.Interfaces;
 using modkaz.Backend.Interfaces.Service;
-using modkaz.DBs;
-using modkaz.Backend.Models.Entity;
+using modkaz.Backend.Models;
 
-namespace modkaz.Backend.Controllers.Post;
+namespace modkaz.Backend.Controllers;
 
 /// <summary>
 /// <para>Implements restfull API for working with entities</para>

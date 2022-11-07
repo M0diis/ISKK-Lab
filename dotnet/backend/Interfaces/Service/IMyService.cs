@@ -4,7 +4,7 @@ public interface IMyService<T>
 {
     Task<List<T>> GetAllAsync();
     
-    Task<T> GetOneById(int id);
+    Task<T> GetOneByIdAsync(int id);
     
     void Create(T entity);
     void Delete(T entity);

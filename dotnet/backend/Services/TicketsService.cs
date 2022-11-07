@@ -19,7 +19,7 @@ public class TicketsService : ITicketsService
         return Task.FromResult(_ticketsRepository.FindAll().ToList());
     }
 
-    public Task<TicketsEntity> GetOneById(int id)
+    public Task<TicketsEntity> GetOneByIdAsync(int id)
     {
         return _ticketsRepository.FindByCondition(x => x.id == id)
             .FirstOrDefaultAsync();

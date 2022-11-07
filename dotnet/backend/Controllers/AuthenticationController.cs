@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-
-using modkaz.Backend.Models.Authentication;
+using modkaz.Backend.Models;
 using modkaz.Backend.Util;
 using modkaz.DBs;
 

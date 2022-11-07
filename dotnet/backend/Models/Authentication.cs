@@ -1,4 +1,4 @@
-namespace modkaz.Backend.Models.Authentication;
+namespace modkaz.Backend.Models;
 
 /// <summary>
 /// Response to the successfull login request.

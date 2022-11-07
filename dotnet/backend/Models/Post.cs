@@ -1,9 +1,6 @@
-using System.ComponentModel.DataAnnotations;
-
 using modkaz.DBs.Entities;
 
-
-namespace modkaz.Backend.Models.Entity;
+namespace modkaz.Backend.Models;
 
 /// <summary>
 /// <para>Post view model for listing purposes.</para>

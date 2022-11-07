@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using modkaz.Backend.Interfaces.Service;
-using modkaz.Backend.Models.Entity;
+using modkaz.Backend.Models;
 
-namespace modkaz.Backend.Controllers.Post;
+namespace modkaz.Backend.Controllers;
 
 /// <summary>
 /// <para>Implements restfull API for working with entities</para>
@@ -118,7 +118,7 @@ public class PostController : ControllerBase
 			return BadRequest("Argument 'id' is null.");
 		}
 
-		var ent = await _postsService.GetOneById(id.Value);
+		var ent = await _postsService.GetOneByIdAsync(id.Value);
 		
 		if (ent == null)
 		{

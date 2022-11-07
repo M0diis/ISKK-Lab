@@ -19,7 +19,7 @@ public class ReviewsService : IReviewsService
         return Task.FromResult(_reviewsRepository.FindAll().ToList());
     }
 
-    public Task<ReviewsEntity> GetOneById(int id)
+    public Task<ReviewsEntity> GetOneByIdAsync(int id)
     {
         return _reviewsRepository.FindByCondition(x => x.id == id).FirstOrDefaultAsync();
     }

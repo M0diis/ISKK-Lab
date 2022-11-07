@@ -19,7 +19,7 @@ public class UsersService : IUsersService
         return Task.FromResult(_usersRepository.FindAll().ToList());
     }
 
-    public Task<UsersEntity> GetOneById(int id)
+    public Task<UsersEntity> GetOneByIdAsync(int id)
     {
         return _usersRepository.FindByCondition(x => x.id == id)
             .FirstOrDefaultAsync();
