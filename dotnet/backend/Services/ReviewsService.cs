@@ -1,4 +1,6 @@
-﻿using modkaz.Backend.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using modkaz.Backend.Interfaces.Repository;
+using modkaz.Backend.Interfaces.Service;
 using modkaz.DBs.Entities;
 
 namespace modkaz.Backend.Services;
@@ -12,14 +14,30 @@ public class ReviewsService : IReviewsService
         _reviewsRepository = reviewsRepository;
     }
     
-    public async Task<List<ReviewsEntity>> GetReviewsAsync()
+    public Task<List<ReviewsEntity>> GetAllAsync()
     {
-        return _reviewsRepository.FindAllList();
+        return Task.FromResult(_reviewsRepository.FindAll().ToList());
     }
-    
-    public async Task<List<ReviewsEntity>> GetReviewsByUserAsync(int userId)
+
+    public Task<ReviewsEntity> GetOneById(int id)
     {
-        return _reviewsRepository.FindAll()
-            .Where(x => x.fk_userId == userId).ToList();
+        return _reviewsRepository.FindByCondition(x => x.id == id).FirstOrDefaultAsync();
+    }
+
+    public void Create(ReviewsEntity entity)
+    {
+        _reviewsRepository.Create(entity);
+    }
+
+    public void Delete(ReviewsEntity entity)
+    {
+        _reviewsRepository.Delete(entity);
+    }
+
+    public Task<List<ReviewsEntity>> GetReviewsByUserIdAsync(int userId)
+    {
+        return Task.FromResult(_reviewsRepository.FindAll()
+            .Where(x => x.fk_userId == userId)
+            .ToList());
     }
 }

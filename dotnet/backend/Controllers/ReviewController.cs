@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using modkaz.Backend.Interfaces;
+using modkaz.Backend.Interfaces.Service;
 using modkaz.DBs;
 using modkaz.Backend.Models.Entity;
 
@@ -22,20 +23,23 @@ public class ReviewController : ControllerBase
 	/// Reviews service.
 	/// </summary>
 	private readonly IReviewsService _reviewsService;
-
-	private readonly MyDatabase _database;
+	
+	/// <summary>
+	/// Users service.
+	/// </summary>
+	private readonly IUsersService _usersService;
 
 	/// <summary>
 	/// Constructor.
 	/// </summary>
 	/// <param name="logger">Logger to use. Injected.</param>
-	/// <param name="database">Database context</param>
 	/// <param name="reviewsService">Service for working with reviews</param>
-	public ReviewController(ILogger<ReviewController> logger, MyDatabase database, IReviewsService reviewsService)
+	/// <param name="usersService">Service for working with users</param>
+	public ReviewController(ILogger<ReviewController> logger, IReviewsService reviewsService, IUsersService usersService)
 	{
 		_logger = logger;
-		_database = database;
 		_reviewsService = reviewsService;
+		_usersService = usersService;
 	}
 
 	/// <summary>
@@ -44,21 +48,20 @@ public class ReviewController : ControllerBase
 	/// <returns>A list of entities.</returns>
 	/// <response code="500">On exception.</response>
 	[HttpGet("list")]
-	// [Authorize(Roles = "user")]
 	[ProducesResponseType(typeof(List<ReviewForListing>), StatusCodes.Status200OK)]
 	[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 	public async Task<IActionResult> List()
 	{
 		_logger.LogInformation("Got request to /backend/review/list");
 		
-		var users = _database.Users
+		var users = (await _usersService.GetAllAsync())
 			.OrderBy(it => it.id)
-			.Select(it => UserForListing.DatabaseToObject(it))
+			.Select(UserForListing.DatabaseToObject)
 			.ToList();
 		
-		var reviews = (await _reviewsService.GetReviewsAsync())
+		var reviews = (await _reviewsService.GetAllAsync())
 			.OrderBy(it => it.id)
-			.Select(it => ReviewForListing.DatabaseToObject(it))
+			.Select(ReviewForListing.DatabaseToObject)
 			.ToList();
 
 		foreach (var review in reviews)
@@ -69,7 +72,7 @@ public class ReviewController : ControllerBase
 			}
 		}
 		
-		_logger.LogInformation("Listed {Count} entities", reviews.Count);
+		_logger.LogInformation("Listed {Count} review entities", reviews.Count);
 		
 		return Ok(reviews);
 	}

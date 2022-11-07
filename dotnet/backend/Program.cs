@@ -7,6 +7,8 @@ using System.Text;
 
 using Microsoft.OpenApi.Models;
 using modkaz.Backend.Interfaces;
+using modkaz.Backend.Interfaces.Repository;
+using modkaz.Backend.Interfaces.Service;
 using modkaz.Backend.Repositories;
 using modkaz.Backend.Services;
 using modkaz.DBs;

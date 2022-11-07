@@ -78,7 +78,7 @@ public class PostForCreateUpdate
 	/// Copy data to DB entity. Will not copy ID field.
 	/// </summary>
 	/// <param name="postEntity">DB entity to fill in.</param>
-	public void ToDatabase(PostsEntity postEntity)
+	public void ToDatabaseObject(PostsEntity postEntity)
 	{
 		postEntity.content = Content;
 		postEntity.title = Title;
@@ -89,12 +89,11 @@ public class PostForCreateUpdate
 	/// <summary>
 	/// Create a new DB entity.
 	/// </summary>
-	/// <param name="postEntity">DB entity to fill in.</param>
-	public PostsEntity ToDatabase()
+	public PostsEntity ToDatabaseObject()
 	{
 		PostsEntity postEntity = new PostsEntity();
 		
-		ToDatabase(postEntity);
+		ToDatabaseObject(postEntity);
 		
 		return postEntity;
 	}

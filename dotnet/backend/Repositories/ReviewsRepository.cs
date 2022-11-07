@@ -1,4 +1,5 @@
 ﻿using modkaz.Backend.Interfaces;
+using modkaz.Backend.Interfaces.Repository;
 using modkaz.DBs;
 using modkaz.DBs.Entities;
 

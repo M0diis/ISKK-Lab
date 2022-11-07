@@ -1,6 +1,7 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using modkaz.Backend.Interfaces;
+using modkaz.Backend.Interfaces.Repository;
 using modkaz.DBs;
 
 namespace modkaz.Backend.Repositories;

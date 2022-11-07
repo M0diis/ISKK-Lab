@@ -1,10 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using modkaz.Backend.Interfaces;
-using modkaz.DBs;
+using modkaz.Backend.Interfaces.Service;
 using modkaz.Backend.Models.Entity;
-using modkaz.Backend.Services;
-using modkaz.DBs.Entities;
 
 namespace modkaz.Backend.Controllers.Post;
 
@@ -21,8 +18,14 @@ public class PostController : ControllerBase
 	/// </summary>
 	private readonly ILogger<PostController> _logger;
 
+	/// <summary>
+	/// Users service.
+	/// </summary>
 	private readonly IUsersService _usersService;
 	
+	/// <summary>
+	/// Posts service.
+	/// </summary>
 	private readonly IPostsService _postsService;
 
 	/// <summary>
@@ -44,19 +47,18 @@ public class PostController : ControllerBase
 	/// <returns>A list of entities.</returns>
 	/// <response code="500">On exception.</response>
 	[HttpGet("list")]
-	// [Authorize(Roles = "user")]
 	[ProducesResponseType(typeof(List<PostForListing>), StatusCodes.Status200OK)]
 	[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 	public async Task<IActionResult> List()
 	{
 		_logger.LogInformation("Got request to /backend/post/list");
 		
-		var users = (await _usersService.GetUsersAsync())
+		var users = (await _usersService.GetAllAsync())
 			.OrderBy(it => it.id)
 			.Select(UserForListing.DatabaseToObject)
 			.ToList();
 
-		var posts = (await _postsService.GetPostsAsync())
+		var posts = (await _postsService.GetAllAsync())
 			.OrderBy(it => it.id)
 			.Select(PostForListing.DatabaseToObject)
 			.ToList();
@@ -68,7 +70,7 @@ public class PostController : ControllerBase
 				post.UserName = user.Name;
 			}
 		}
-		_logger.LogInformation("Listed {Count} entities", posts.Count);
+		_logger.LogInformation("Listed {Count} post entities", posts.Count);
 		
 		return Ok(posts);
 	}
@@ -81,7 +83,7 @@ public class PostController : ControllerBase
 	/// <response code="500">On exception.</response>
 	[HttpPost("create")]
 	[Authorize(Roles = "user")]
-	[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+	[ProducesResponseType(StatusCodes.Status200OK)]
 	[ProducesResponseType(StatusCodes.Status400BadRequest)]
 	[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 	public IActionResult Create(PostForCreateUpdate post)
@@ -91,7 +93,7 @@ public class PostController : ControllerBase
 			return BadRequest(ModelState);
 		}
 
-		_postsService.CreatePost(post.ToDatabase());
+		_postsService.Create(post.ToDatabaseObject());
 		
 		return Ok();
 	}
@@ -116,14 +118,14 @@ public class PostController : ControllerBase
 			return BadRequest("Argument 'id' is null.");
 		}
 
-		var ent = await _postsService.GetPostByIdAsync(id.Value);
+		var ent = await _postsService.GetOneById(id.Value);
 		
 		if (ent == null)
 		{
 			return NotFound();
 		}
 		
-		_postsService.DeletePost(ent);
+		_postsService.Delete(ent);
 		
 		return Ok(ent);
 	}

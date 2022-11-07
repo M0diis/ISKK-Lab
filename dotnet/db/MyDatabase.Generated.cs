@@ -9,8 +9,6 @@ namespace modkaz.DBs
 
         private MyDatabase(DbContextOptions<MyDatabase> options) : base(options) { }
 
-        public virtual DbSet<DemoEntities> DemoEntities { get; set; }
-        
         public virtual DbSet<PostsEntity> Posts { get; set; }
         
         public virtual DbSet<UsersEntity> Users { get; set; }

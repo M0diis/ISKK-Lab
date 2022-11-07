@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using modkaz.Backend.Interfaces;
+using modkaz.Backend.Interfaces.Repository;
+using modkaz.Backend.Interfaces.Service;
 using modkaz.DBs.Entities;
 
 namespace modkaz.Backend.Services;
@@ -18,23 +19,29 @@ public class PostsService : IPostsService
         return _postsRepository.FindByCondition(x => x.id == id).FirstOrDefaultAsync();
     }
 
-    public async Task<List<PostsEntity>> GetPostsAsync()
+    public Task<List<PostsEntity>> GetAllAsync()
     {
-        return _postsRepository.FindAllList();
-    }
-    
-    public async Task<List<PostsEntity>> GetPostsByUserAsync(int userId)
-    {
-        return _postsRepository.FindAll()
-            .Where(x => x.fk_userId == userId).ToList();
+        return Task.FromResult(_postsRepository.FindAll().ToList());
     }
 
-    public void CreatePost(PostsEntity postsEntity)
+    public Task<PostsEntity> GetOneById(int id)
+    {
+        return _postsRepository.FindByCondition(x => x.id == id).FirstOrDefaultAsync();
+    }
+
+    public Task<List<PostsEntity>> GetPostsByUserIdAsync(int userId)
+    {
+        return Task.FromResult(_postsRepository.FindAll()
+            .Where(x => x.fk_userId == userId)
+            .ToList());
+    }
+
+    public void Create(PostsEntity postsEntity)
     {
         _postsRepository.Create(postsEntity);
     }
 
-    public void DeletePost(PostsEntity postsEntity)
+    public void Delete(PostsEntity postsEntity)
     {
         _postsRepository.Delete(postsEntity);
     }
