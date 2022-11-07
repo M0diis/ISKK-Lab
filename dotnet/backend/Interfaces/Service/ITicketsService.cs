@@ -1,4 +1,4 @@
-﻿using modkaz.DBs.Entities;
+﻿using db.Entities;
 
 namespace modkaz.Backend.Interfaces;
 

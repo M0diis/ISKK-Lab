@@ -2,7 +2,7 @@
 
 namespace modkaz.Backend.Interfaces.Repository;
 
-public interface IUsersRepository : IMyRepository<UsersEntity>
+public interface IMessagesTicketsRepository : IMyRepository<MessagesTicketsEntity>
 {
         
 }

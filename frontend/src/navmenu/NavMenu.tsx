@@ -25,33 +25,33 @@ function NavMenu() {
 						<a className="navbar-brand" href="/home">Modestas Kaz. | Developer</a>
 						<NavLink
 							to="/"
-							className={it => "nav-link " + (it.isActive ? "active" : "")}
+							className={it => "nav-link mx-2 " + (it.isActive ? "active" : "")}
 						>HOME</NavLink>
 						<NavLink
 							to="/about"
-							className={it => "nav-link " + (it.isActive ? "active" : "")}
+							className={it => "nav-link mx-2 " + (it.isActive ? "active" : "")}
 						>ABOUT</NavLink>
 						<NavLink
 							to="/contact"
-							className={it => "nav-link " + (it.isActive ? "active" : "")}
+							className={it => "nav-link mx-2 " + (it.isActive ? "active" : "")}
 						>CONTACT ME</NavLink>
 						<NavLink
 							to="/tools"
-							className={it => "nav-link " + (it.isActive ? "active" : "")}
+							className={it => "nav-link mx-2 " + (it.isActive ? "active" : "")}
 						>TOOLS</NavLink>
 						<NavLink
 							to="/reviews"
-							className={it => "nav-link " + (it.isActive ? "active" : "")}
+							className={it => "nav-link mx-2 " + (it.isActive ? "active" : "")}
 						>REVIEWS</NavLink>
 						{appState.isLoggedIn.value &&
 							<>
 								<NavLink
 									to="/tickets"
-									className={it => "nav-link " + (it.isActive ? "active" : "")}
+									className={it => "nav-link mx-2 " + (it.isActive ? "active" : "")}
 								>TICKETS</NavLink>
 								<NavLink
 									to="/admin-panel"
-									className={it => "nav-link " + (it.isActive ? "active" : "")}
+									className={it => "nav-link mx-2 " + (it.isActive ? "active" : "")}
 								>ADMIN-PANEL</NavLink>
 							</>
 						}

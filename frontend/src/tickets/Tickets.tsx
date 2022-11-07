@@ -20,9 +20,7 @@ class State
     isLoaded: boolean = false;
 
     tickets: TicketForList[] = [];
-
-    isDeleting: boolean = false;
-
+    
     /**
      * Makes a shallow clone. Use this to return new state instance from state updates.
      * @returns A shallow clone of this instance.
@@ -104,7 +102,7 @@ function Tickets()
             return (
                 <>
                     <div id={ ticket.title } className="filterable">
-                        <a className="list-group-item list-group-item-action flex-column align-items-start" href="/tickets/view/{{ ticket.id }}">
+                        <a className="list-group-item list-group-item-action flex-column align-items-start" onClick={() => navigate(`/tickets/view/${ticket.id}`, { state : "refresh" })}>
                             <div className="d-flex w-100 justify-content-between">
                                 <h5 className="mb-1">{ ticket.title }</h5>
                                 <small>{ ticket.createdTimestamp }</small>

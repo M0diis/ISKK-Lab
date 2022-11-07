@@ -1,6 +1,6 @@
-﻿using modkaz.Backend.Interfaces.Repository;
-using modkaz.DBs;
-using modkaz.DBs.Entities;
+﻿using db;
+using db.Entities;
+using modkaz.Backend.Interfaces.Repository;
 
 namespace modkaz.Backend.Repositories;
 

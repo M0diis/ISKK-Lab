@@ -1,4 +1,4 @@
-using modkaz.DBs.Entities;
+using db.Entities;
 
 namespace modkaz.Backend.Models;
 
@@ -9,7 +9,7 @@ namespace modkaz.Backend.Models;
 public class TicketForListing
 {
 	/// <summary>
-	/// Post ID.
+	/// Ticket ID.
 	/// </summary>
 	public int Id { get; set; }
 
@@ -27,13 +27,21 @@ public class TicketForListing
 	/// Created Timestamp.
 	/// </summary>
 	public DateTime CreatedTimestamp { get; set; }
+	
+	/// <summary>
+	/// Closed.
+	/// </summary>
+	public bool Closed { get; set; }
 
 	/// <summary>
 	/// User ID.
 	/// </summary>
 	public long FK_UserID { get; set; }
 	
-	public String UserName { get; set; }
+	/// <summary>
+	/// User name.
+	/// </summary>
+	public string UserName { get; set; }
 
 	/// <summary>
 	/// Create instance from DB entity.
@@ -48,7 +56,8 @@ public class TicketForListing
 			Title = ticketEntity.title,
 			Description = ticketEntity.description,
 			CreatedTimestamp = ticketEntity.created_timestamp,
-			FK_UserID = ticketEntity.fk_userId
+			FK_UserID = ticketEntity.fk_userId,
+			Closed = ticketEntity.closed
 		};
 	}
 }

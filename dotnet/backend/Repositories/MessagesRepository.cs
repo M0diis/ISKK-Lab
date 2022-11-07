@@ -4,11 +4,11 @@ using modkaz.Backend.Interfaces.Repository;
 
 namespace modkaz.Backend.Repositories;
 
-public class PostsRepository : BaseRepository<PostsEntity>, IPostsRepository
+public class MessagesRepository : BaseRepository<MessagesEntity>, IMessagesRepository
 {
     private readonly MyDatabase _context;
 
-    public PostsRepository(MyDatabase context) : base(context)
+    public MessagesRepository(MyDatabase context) : base(context)
     {
         this._context = context;
     }

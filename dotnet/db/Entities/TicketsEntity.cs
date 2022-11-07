@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace modkaz.DBs.Entities;
+namespace db.Entities;
 
 [Table("tickets")]
 public partial class TicketsEntity

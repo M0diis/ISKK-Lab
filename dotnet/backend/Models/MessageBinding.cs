@@ -1,28 +1,28 @@
-using modkaz.DBs.Entities;
+using db.Entities;
 
 namespace modkaz.Backend.Models;
 
 /// <summary>
-/// <para>Post view model for listing purposes.</para>
+/// <para>User view model for listing purposes.</para>
 /// <para>Static members are thread safe, instance members are not.</para>
 /// </summary>
-public class ReviewForListing
+public class MessageForListing
 {
 	/// <summary>
-	/// Post ID.
+	/// Message ID.
 	/// </summary>
 	public int Id { get; set; }
-
+	
 	/// <summary>
-	/// Review content.
+	/// Message content.
 	/// </summary>
-	public string Data { get; set; }
+	public string Content { get; set; }
 
 	/// <summary>
 	/// Created timestamp.
 	/// </summary>
 	public DateTime CreatedTimestamp { get; set; }
-
+	
 	/// <summary>
 	/// User ID.
 	/// </summary>
@@ -31,21 +31,21 @@ public class ReviewForListing
 	/// <summary>
 	/// User name.
 	/// </summary>
-	public String UserName { get; set; }
-
+	public string UserName { get; set; }
+	
 	/// <summary>
 	/// Create instance from DB entity.
 	/// </summary>
-	/// <param name="reviewEntity">DB entity to create from.</param>
+	/// <param name="messagesEntity">DB entity to create from.</param>
 	/// <returns>A corresponding instance.</returns>
-	public static ReviewForListing DatabaseToObject(ReviewsEntity reviewEntity)
+	public static MessageForListing DatabaseToObject(MessagesEntity messagesEntity)
 	{
-		return new ReviewForListing
+		return new MessageForListing
 		{
-			Id = reviewEntity.id,
-			Data = reviewEntity.data,
-			CreatedTimestamp = reviewEntity.created_timestamp,
-			FK_UserID = reviewEntity.fk_userId
+			Id = messagesEntity.id,
+			Content = messagesEntity.content,
+			CreatedTimestamp = messagesEntity.created_timestamp,
+			FK_UserID = messagesEntity.fk_userId
 		};
 	}
 }

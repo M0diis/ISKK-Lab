@@ -4,11 +4,11 @@ using modkaz.Backend.Interfaces.Repository;
 
 namespace modkaz.Backend.Repositories;
 
-public class PostsRepository : BaseRepository<PostsEntity>, IPostsRepository
+public class TicketsRepository : BaseRepository<TicketsEntity>, ITicketsRepository
 {
     private readonly MyDatabase _context;
 
-    public PostsRepository(MyDatabase context) : base(context)
+    public TicketsRepository(MyDatabase context) : base(context)
     {
         this._context = context;
     }

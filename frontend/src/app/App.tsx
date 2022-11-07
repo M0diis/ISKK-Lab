@@ -18,6 +18,7 @@ import EntityCrud from 'entityCrud/EntityCrud';
 import Reviews from 'reviews/Reviews';
 import Tickets from 'tickets/Tickets';
 import AdminPanel from "../admin-panel/AdminPanel";
+import ViewTicket from "../tickets/ViewTicket";
 
 
 class State {
@@ -101,6 +102,7 @@ function App() {
 						<Route path="/reviews" element={<Reviews/>}/>
 						<Route path="/tickets" element={<Tickets/>}/>
 						<Route path="/admin-panel" element={<AdminPanel/>}/>
+						<Route path="/tickets/view/:ticketId" element={<ViewTicket/>}/>
 						<Route path="/entityCrud" element={<EntityCrud/>}/>
 						</>
 					{/* }					 */}

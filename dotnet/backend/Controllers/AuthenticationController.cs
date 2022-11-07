@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using db;
 using modkaz.Backend.Models;
 using modkaz.Backend.Util;
-using modkaz.DBs;
 
 
 namespace modkaz.Backend.Controllers.Authentication;

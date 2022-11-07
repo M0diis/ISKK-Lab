@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using db.Entities;
+using Microsoft.EntityFrameworkCore;
 using modkaz.Backend.Interfaces;
 using modkaz.Backend.Interfaces.Repository;
-using modkaz.DBs.Entities;
 
 namespace modkaz.Backend.Services;
 

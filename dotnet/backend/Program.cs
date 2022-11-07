@@ -4,14 +4,13 @@ using System.Reflection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-
+using db;
 using Microsoft.OpenApi.Models;
 using modkaz.Backend.Interfaces;
 using modkaz.Backend.Interfaces.Repository;
 using modkaz.Backend.Interfaces.Service;
 using modkaz.Backend.Repositories;
 using modkaz.Backend.Services;
-using modkaz.DBs;
 
 
 namespace modkaz.Backend;
@@ -113,7 +112,15 @@ public class Program
 		builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 		builder.Services.AddScoped<IUsersService, UsersService>();
 		
-
+		builder.Services.AddScoped<ITicketsRepository, TicketsRepository>();
+		builder.Services.AddScoped<ITicketsService, TicketsService>();
+		
+		builder.Services.AddScoped<IMessagesRepository, MessagesRepository>();
+		builder.Services.AddScoped<IMessagesService, MessagesService>();
+		
+		builder.Services.AddScoped<IMessagesTicketsRepository, MessagesTicketsRepository>();
+		builder.Services.AddScoped<IMessagesTicketsService, MessagesTicketsService>();
+		
 		// Build the app
 		var app = builder.Build();
 

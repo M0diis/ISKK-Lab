@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-
-namespace modkaz.DBs;
+namespace db;
 
 public partial class MyDatabase : DbContext
 {

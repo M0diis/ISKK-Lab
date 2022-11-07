@@ -1,4 +1,4 @@
-using modkaz.DBs.Entities;
+using db.Entities;
 
 namespace modkaz.Backend.Models;
 
@@ -33,7 +33,10 @@ public class PostForListing
 	/// </summary>
 	public long FK_UserID { get; set; }
 	
-	public String UserName { get; set; }
+	/// <summary>
+	/// User name.
+	/// </summary>
+	public string UserName { get; set; }
 
 	/// <summary>
 	/// Create instance from DB entity.

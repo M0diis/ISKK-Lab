@@ -72,3 +72,19 @@ interface TicketForList
 export type {
     TicketForList
 }
+
+/**
+ * Ticket messages entity.
+ */
+interface TicketMessages
+{
+    id: number;
+    content: string;
+    createdTimestamp: string;
+    fK_UserID: number;
+    userName: string;
+}
+
+export type {
+    TicketMessages
+}
