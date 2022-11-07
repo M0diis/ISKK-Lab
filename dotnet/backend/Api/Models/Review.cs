@@ -1,7 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-
 using modkaz.DBs.Entities;
-
 
 namespace modkaz.Backend.Models.Entity;
 
@@ -9,7 +7,7 @@ namespace modkaz.Backend.Models.Entity;
 /// <para>Post view model for listing purposes.</para>
 /// <para>Static members are thread safe, instance members are not.</para>
 /// </summary>
-public class TicketForListing
+public class ReviewForListing
 {
 	/// <summary>
 	/// Post ID.
@@ -17,41 +15,40 @@ public class TicketForListing
 	public int Id { get; set; }
 
 	/// <summary>
-	/// Title.
+	/// Review content.
 	/// </summary>
-	public string Title { get; set; }
+	[Required(ErrorMessage = "Review content is required.")]
+	public string Data { get; set; }
 
 	/// <summary>
-	/// Description.
-	/// </summary>
-	public string Description { get; set; }
-	
-	/// <summary>
-	/// Created Timestamp.
+	/// Created timestamp.
 	/// </summary>
 	public DateTime CreatedTimestamp { get; set; }
 
 	/// <summary>
 	/// User ID.
 	/// </summary>
+	[Required(ErrorMessage = "User ID is required.")]
 	public long FK_UserID { get; set; }
 	
+	/// <summary>
+	/// User name.
+	/// </summary>
 	public String UserName { get; set; }
 
 	/// <summary>
 	/// Create instance from DB entity.
 	/// </summary>
-	/// <param name="ticket">DB entity to create from.</param>
+	/// <param name="review">DB entity to create from.</param>
 	/// <returns>A corresponding instance.</returns>
-	public static TicketForListing DatabaseToObject(Tickets ticket)
+	public static ReviewForListing DatabaseToObject(Reviews review)
 	{
-		return new TicketForListing
+		return new ReviewForListing
 		{
-			Id = ticket.id,
-			Title = ticket.title,
-			Description = ticket.description,
-			CreatedTimestamp = ticket.created_timestamp,
-			FK_UserID = ticket.fk_userId
+			Id = review.id,
+			Data = review.data,
+			CreatedTimestamp = review.created_timestamp,
+			FK_UserID = review.fk_userId
 		};
 	}
 }

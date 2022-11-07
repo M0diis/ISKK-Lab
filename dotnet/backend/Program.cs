@@ -1,4 +1,3 @@
-using System.Net;
 using System.Reflection;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -8,9 +7,7 @@ using System.Text;
 using Microsoft.OpenApi.Models;
 using modkaz.DBs;
 
-
 namespace modkaz.Backend;
-
 
 /// <summary>
 /// <para>Application entry point.</para>
@@ -36,13 +33,13 @@ public class Program
 	{
 		var builder = WebApplication.CreateBuilder(args);
 
-		//add and configure swagger documentation generator
+		// Add and configure swagger documentation generator
 		builder.Services.AddSwaggerGen(opts => {
-			//include code comments in swagger documentation
+			// Include code comments in swagger documentation
 			var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
 			opts.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 
-			//enable JWT authentication support in swagger interface
+			// Enable JWT authentication support in swagger interface
 			opts.AddSecurityDefinition(
 				"JWT",
 				new OpenApiSecurityScheme {
@@ -67,10 +64,10 @@ public class Program
 			});
 		});
 
-		//turn on support for web api controllers
+		// Turn on support for web api controllers
 		builder.Services.AddControllers();
 
-		//configure JWT based authentication
+		// Configure JWT based authentication
 		builder.Services
 			.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 			.AddJwtBearer(opts => {
@@ -86,7 +83,7 @@ public class Program
 					};
 			});
 
-		//add CORS policies
+		// Add CORS policies
 		builder.Services.AddCors(cr => {
 			//allow everything from everywhere
 			cr.AddPolicy("allowAll", cp => {
@@ -95,34 +92,33 @@ public class Program
 				cp.AllowAnyHeader();
 			});
 		});
-
 		
 		builder.Services.AddDbContext<MyDatabase>();
 
-		//build the app
+		// Build the app
 		var app = builder.Build();
 
-		//turn CORS policy on
+		// Turn CORS policy on
 		app.UseCors("allowAll");
 
-		//turn on support for swagger web page
+		// Turn on support for swagger web page
 		app.UseSwagger();
 		app.UseSwaggerUI();
 
-		//configure serving of SPA static content
+		// Configure serving of SPA static content
 		if( !app.Environment.IsDevelopment() )
 		{
 			app.UseSpaStaticFiles();
 		}
 
-		//turn on request routing
+		// Turn on request routing
 		app.UseRouting();
 
-		//these two lines turn on support for authentication and authorization middleware
+		// These two lines turn on support for authentication and authorization middleware
 		app.UseAuthentication();
 		app.UseAuthorization();
 
-		//configure routes
+		// Configure routes
 		app.UseEndpoints(ep => {
 			ep.MapControllerRoute(
 				name: "default",
@@ -130,7 +126,7 @@ public class Program
 			);
 		});
 
-		//configure SPA middleware
+		// Configure SPA middleware
 		app.UseSpa(spa => {
 			//this must point to the frontend project relative to backend project
 			spa.Options.SourcePath = "../../frontend";
@@ -142,7 +138,7 @@ public class Program
 			}
 		});
 
-		//start the server, block until it shuts down
+		// Start the server, block until it shuts down
 		app.Run();
 	}
 }

@@ -1,9 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-
+using Microsoft.AspNetCore.Authorization;
+using modkaz.Backend.Interfaces;
 using modkaz.Backend.Models.Authentication;
+using modkaz.Backend.Models.Entity;
 using modkaz.Backend.Util;
 using modkaz.DBs;
+using modkaz.DBs.Entities;
+using Org.Ktu.T120B178.Backend.Api.Models;
+using Org.Ktu.T120B178.Backend.Models;
 
 
 namespace modkaz.Backend.Controllers.Authentication;
@@ -12,21 +17,30 @@ namespace modkaz.Backend.Controllers.Authentication;
 [Route("backend/auth")]
 public class AuthenticationController : ControllerBase
 {
+	private readonly IAuthenticationService _authenticationService;
+	private readonly IUsersRepository _usersRepository;
+	
 	/// <summary>
 	/// Logger.
 	/// </summary>
 	private readonly ILogger<AuthenticationController> _logger;
 	
 	private readonly MyDatabase _database;
+
 	/// <summary>
 	/// Constructor.
 	/// </summary>
 	/// <param name="logger">Logger. Injected.</param>
 	/// <param name="database">Database context</param>
-	public AuthenticationController(ILogger<AuthenticationController> logger, MyDatabase database)
+	/// <param name="authenticationService">Authentication service. Injected.</param>
+	/// <param name="usersRepository">Users repository. Injected.</param>
+	public AuthenticationController(ILogger<AuthenticationController> logger, MyDatabase database, 
+		IAuthenticationService authenticationService, IUsersRepository usersRepository)
 	{
 		_logger = logger;
 		_database = database;
+		_authenticationService = authenticationService;
+		_usersRepository = usersRepository;
 	}
 
 	/// <summary>
@@ -44,12 +58,16 @@ public class AuthenticationController : ControllerBase
 	public IActionResult LogIn(string username, string password)
 	{
 		_logger.LogInformation("Got request to /backend/auth/login");
-		
-		if( username == null )
-			throw new ArgumentException("Argument 'username' is null.");
 
-		if( password == null )
+		if (username == null)
+		{
+			throw new ArgumentException("Argument 'username' is null.");
+		}
+
+		if (password == null)
+		{
 			throw new ArgumentException("Argument 'password' is null.");
+		}		
 		
 		if( username == "a" && password == "b" )
 		{
@@ -114,4 +132,54 @@ public class AuthenticationController : ControllerBase
 	{
 		_logger.LogInformation("Got request to /backend/auth/logout with JWT: {Jwt}", jwt);
 	}	
+	
+	[AllowAnonymous]
+	[HttpPost("register")]
+	[ProducesResponseType(StatusCodes.Status200OK)]
+	[ProducesResponseType(StatusCodes.Status400BadRequest)]
+	public IActionResult RegisterUser(UserBindingModel model)
+	{
+		if (!ModelState.IsValid)
+		{
+			return BadRequest();
+		}
+
+		var user = new Users
+		{
+			name = model.Name,
+			password = model.Password,
+			admin = model.Admin,
+			email = model.Email,
+			created_timestamp = model.CreatedTimestamp
+		};
+
+		_database.Users.Add(user);
+
+		return Ok("Created");
+	}   
+	
+	[AllowAnonymous]
+	[HttpPost("refresh")]
+	public async Task<ActionResult<object>> RefreshToken([FromBody] RefreshAuthenticatedUserBindingModel model)
+	{
+		if (!ModelState.IsValid)
+		{
+			return BadRequest();
+		}
+
+		var token = new Token 
+		{
+			AccessToken = model.AccessToken,
+			RefreshToken = model.RefreshToken
+		};
+
+		var authenticatedUser = await _authenticationService.RefreshAsync(token);
+
+		if (authenticatedUser == null)
+		{
+			return Unauthorized();
+		} 
+
+		return Ok(authenticatedUser);
+	}
 }

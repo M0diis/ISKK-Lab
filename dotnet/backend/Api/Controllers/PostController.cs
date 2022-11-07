@@ -52,7 +52,7 @@ public class PostController : ControllerBase
 		
 		var users = _database.Users
 			.OrderBy(it => it.id)
-			.Select(it => UserForListing.DatabaseToObject(it))
+			.Select(it => UserBindingModel.DatabaseToObject(it))
 			.ToList();
 		
 		foreach (var post in posts)

@@ -19,11 +19,13 @@ public class PostForListing
 	/// <summary>
 	/// Title.
 	/// </summary>
+	[Required(ErrorMessage = "Title is required.")]
 	public string Title { get; set; }
 
 	/// <summary>
 	/// Content.
 	/// </summary>
+	[Required(ErrorMessage = "Post content is required.")]
 	public string Content { get; set; }
 	
 	/// <summary>
@@ -34,6 +36,7 @@ public class PostForListing
 	/// <summary>
 	/// User ID.
 	/// </summary>
+	[Required(ErrorMessage = "User ID is required.")]
 	public long FK_UserID { get; set; }
 	
 	public String UserName { get; set; }
@@ -61,16 +64,19 @@ public class PostForCreateUpdate
 	/// <summary>
 	/// Title.
 	/// </summary>
+	[Required(ErrorMessage = "Post title is required.")]
 	public string Title { get; set; }
 
 	/// <summary>
 	/// Content.
 	/// </summary>
+	[Required(ErrorMessage = "Post content is required.")]
 	public string Content { get; set; }
 	
 	/// <summary>
 	/// User ID.
 	/// </summary>
+	[Required(ErrorMessage = "User ID is required.")]
 	public int FK_UserID { get; set; }
 	
 	

@@ -9,7 +9,7 @@ namespace modkaz.Backend.Models.Entity;
 /// <para>User view model for listing purposes.</para>
 /// <para>Static members are thread safe, instance members are not.</para>
 /// </summary>
-public class UserForListing
+public class UserBindingModel
 {
 	/// <summary>
 	/// User ID.
@@ -19,16 +19,19 @@ public class UserForListing
 	/// <summary>
 	/// Name.
 	/// </summary>
+	[Required(ErrorMessage = "Name is required.")]
 	public string Name { get; set; }
 
 	/// <summary>
 	/// Email.
 	/// </summary>
+	[Required(ErrorMessage = "Email is required.")]
 	public string Email { get; set; }
 	
 	/// <summary>
 	/// Password
 	/// </summary>
+	[Required(ErrorMessage = "Password is required.")]
 	public string Password { get; set; }
 
 	/// <summary>
@@ -46,9 +49,9 @@ public class UserForListing
 	/// </summary>
 	/// <param name="user">DB entity to create from.</param>
 	/// <returns>A corresponding instance.</returns>
-	public static UserForListing DatabaseToObject(Users user)
+	public static UserBindingModel DatabaseToObject(Users user)
 	{
-		return new UserForListing
+		return new UserBindingModel
 		{
 			Id = user.id,
 			Name = user.name,
