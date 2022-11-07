@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using modkaz.Backend.Interfaces;
 using modkaz.DBs;
 using modkaz.Backend.Models.Entity;
+using modkaz.Backend.Services;
 using modkaz.DBs.Entities;
 
 namespace modkaz.Backend.Controllers.Post;
@@ -19,17 +21,21 @@ public class PostController : ControllerBase
 	/// </summary>
 	private readonly ILogger<PostController> _logger;
 
-	private readonly MyDatabase _database;
+	private readonly IUsersService _usersService;
+	
+	private readonly IPostsService _postsService;
 
 	/// <summary>
 	/// Constructor.
 	/// </summary>
-	/// <param name="logger">Logger to use. Injected.</param>
-	/// <param name="database">Database context</param>
-	public PostController(ILogger<PostController> logger, MyDatabase database)
+	/// <param name="logger">Logger to use.</param>
+	/// <param name="usersService">Users service.</param>
+	/// <param name="postsService">Posts service</param>
+	public PostController(ILogger<PostController> logger, IUsersService usersService, IPostsService postsService)
 	{
 		_logger = logger;
-		_database = database;
+		_usersService = usersService;
+		_postsService = postsService;
 	}
 
 	/// <summary>
@@ -41,18 +47,18 @@ public class PostController : ControllerBase
 	// [Authorize(Roles = "user")]
 	[ProducesResponseType(typeof(List<PostForListing>), StatusCodes.Status200OK)]
 	[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-	public IActionResult List()
+	public async Task<IActionResult> List()
 	{
 		_logger.LogInformation("Got request to /backend/post/list");
-
-		var posts = _database.Posts
-			.OrderBy(it => it.id)
-			.Select(it => PostForListing.DatabaseToObject(it))
-			.ToList();
 		
-		var users = _database.Users
+		var users = (await _usersService.GetUsersAsync())
 			.OrderBy(it => it.id)
-			.Select(it => UserForListing.DatabaseToObject(it))
+			.Select(UserForListing.DatabaseToObject)
+			.ToList();
+
+		var posts = (await _postsService.GetPostsAsync())
+			.OrderBy(it => it.id)
+			.Select(PostForListing.DatabaseToObject)
 			.ToList();
 		
 		foreach (var post in posts)
@@ -62,7 +68,6 @@ public class PostController : ControllerBase
 				post.UserName = user.Name;
 			}
 		}
-		
 		_logger.LogInformation("Listed {Count} entities", posts.Count);
 		
 		return Ok(posts);
@@ -85,15 +90,9 @@ public class PostController : ControllerBase
 		{
 			return BadRequest(ModelState);
 		}
-		
-		var databaseObject = new Posts();
-		
-		post.ToDatabase(databaseObject);
 
-		_database.Posts.Add(databaseObject);
-		_database.SaveChanges();
-
-		//
+		_postsService.CreatePost(post.ToDatabase());
+		
 		return Ok();
 	}
 	
@@ -108,7 +107,7 @@ public class PostController : ControllerBase
 	[ProducesResponseType(StatusCodes.Status200OK)]
 	[ProducesResponseType(StatusCodes.Status404NotFound)]
 	[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-	public IActionResult Delete(int? id)
+	public async Task<IActionResult> Delete(int? id)
 	{
 		_logger.LogInformation("Got request to /backend/post/delete?id={ID}", id);
 		
@@ -116,17 +115,15 @@ public class PostController : ControllerBase
 		{
 			return BadRequest("Argument 'id' is null.");
 		}
-		
-		var ent = _database.Posts
-			.FirstOrDefault(it => it.id == id.Value);
+
+		var ent = await _postsService.GetPostByIdAsync(id.Value);
 		
 		if (ent == null)
 		{
 			return NotFound();
 		}
 		
-		_database.Posts.Remove(ent);
-		_database.SaveChanges();
+		_postsService.DeletePost(ent);
 		
 		return Ok(ent);
 	}

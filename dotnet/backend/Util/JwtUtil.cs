@@ -35,16 +35,13 @@ public class JwtUtil
 		var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Config.JwtSecret));
 		var signingCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
 		
-		var token = 
-			new JwtSecurityToken(
-				issuer: "",
-				audience: "",
-				expires: DateTime.Now + duration,
-				claims: claims,
-				signingCredentials: signingCredentials
-			);
-		
-		return token;
+		return new JwtSecurityToken(
+			issuer: "",
+			audience: "",
+			expires: DateTime.Now + duration,
+			claims: claims,
+			signingCredentials: signingCredentials
+		);;
 	}
 
 	/// <summary>
@@ -54,8 +51,10 @@ public class JwtUtil
 	/// <returns>Serialized token.</returns>
 	public static string SerializeToken(JwtSecurityToken token)
 	{
-		if( token ==  null )
+		if (token == null)
+		{
 			throw new ArgumentException("Argument 'token' is null.");
+		}
 		
 		var res = new JwtSecurityTokenHandler().WriteToken(token);
 		

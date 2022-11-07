@@ -3,7 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace modkaz.DBs.Entities;
 
-public partial class Posts
+[Table("posts")]
+public partial class PostsEntity
 {
     [Key]
     [Column(TypeName = "int(11)")]

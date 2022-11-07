@@ -6,7 +6,7 @@
 		<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
 		<TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
 		<IsPackable>false</IsPackable>
-		<RootNamespace>Org.Ktu.T120B178.Backend</RootNamespace>
+		<RootNamespace>modkaz.Backend</RootNamespace>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<!-- 
 			This is necessary to generate swagger documentation with comments from code. 

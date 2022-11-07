@@ -36,16 +36,16 @@ public class ReviewForListing
 	/// <summary>
 	/// Create instance from DB entity.
 	/// </summary>
-	/// <param name="review">DB entity to create from.</param>
+	/// <param name="reviewEntity">DB entity to create from.</param>
 	/// <returns>A corresponding instance.</returns>
-	public static ReviewForListing DatabaseToObject(Reviews review)
+	public static ReviewForListing DatabaseToObject(ReviewsEntity reviewEntity)
 	{
 		return new ReviewForListing
 		{
-			Id = review.id,
-			Data = review.data,
-			CreatedTimestamp = review.created_timestamp,
-			FK_UserID = review.fk_userId
+			Id = reviewEntity.id,
+			Data = reviewEntity.data,
+			CreatedTimestamp = reviewEntity.created_timestamp,
+			FK_UserID = reviewEntity.fk_userId
 		};
 	}
 }

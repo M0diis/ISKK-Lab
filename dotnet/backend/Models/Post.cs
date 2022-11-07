@@ -41,17 +41,17 @@ public class PostForListing
 	/// <summary>
 	/// Create instance from DB entity.
 	/// </summary>
-	/// <param name="post">DB entity to create from.</param>
+	/// <param name="postEntity">DB entity to create from.</param>
 	/// <returns>A corresponding instance.</returns>
-	public static PostForListing DatabaseToObject(Posts post)
+	public static PostForListing DatabaseToObject(PostsEntity postEntity)
 	{
 		return new PostForListing
 		{
-			Id = post.id,
-			Title = post.title,
-			Content = post.content,
-			CreatedTimestamp = post.created_timestamp,
-			FK_UserID = post.fk_userId
+			Id = postEntity.id,
+			Title = postEntity.title,
+			Content = postEntity.content,
+			CreatedTimestamp = postEntity.created_timestamp,
+			FK_UserID = postEntity.fk_userId
 		};
 	}
 }
@@ -77,11 +77,25 @@ public class PostForCreateUpdate
 	/// <summary>
 	/// Copy data to DB entity. Will not copy ID field.
 	/// </summary>
-	/// <param name="post">DB entity to fill in.</param>
-	public void ToDatabase(Posts post)
+	/// <param name="postEntity">DB entity to fill in.</param>
+	public void ToDatabase(PostsEntity postEntity)
 	{
-		post.content = Content;
-		post.title = Title;
-		post.fk_userId = FK_UserID;
+		postEntity.content = Content;
+		postEntity.title = Title;
+		postEntity.fk_userId = FK_UserID;
+		postEntity.created_timestamp = DateTime.Now;
+	}
+	
+	/// <summary>
+	/// Create a new DB entity.
+	/// </summary>
+	/// <param name="postEntity">DB entity to fill in.</param>
+	public PostsEntity ToDatabase()
+	{
+		PostsEntity postEntity = new PostsEntity();
+		
+		ToDatabase(postEntity);
+		
+		return postEntity;
 	}
 }

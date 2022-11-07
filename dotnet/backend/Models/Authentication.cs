@@ -8,20 +8,20 @@ public class LogInResponse
 	/// <summary>
 	/// User ID.
 	/// </summary>
-	public int UserId {get; set;}
+	public int UserId { get; set;}
 
 	/// <summary>
 	/// User title.
 	/// </summary>
-	public string UserTitle {get; set;}
+	public string UserTitle { get; set;}
 
 	/// <summary>
 	/// JWT for subsequent authentication.
 	/// </summary>
-	public string Jwt {get; set;}
+	public string Jwt { get; set;}
 	
 	/// <summary>
 	/// Is Admin.
 	/// </summary>
-	public bool IsAdmin {get; set;}
+	public bool IsAdmin { get; set;}
 }

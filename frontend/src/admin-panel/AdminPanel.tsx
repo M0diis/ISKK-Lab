@@ -68,17 +68,14 @@ function AdminPanel()
         
         update(() => {
             backend.post(
-                config.backendUrl + "/post/create",
-                post
-            ).then(resp => {
+                config.backendUrl + "/post/create", post
+            ).then((res) => {
                 update(() => location.state = "refresh");
 
-                notifySuccess("Post has been deleted.");
+                notifySuccess("Post has been created.");
             })
-            .catch(err => {
-                const msg = `Creation new post has failed.`;
-                
-                notifyFailure(msg);
+            .catch((err) => {
+                notifyFailure("Creation of a new post has failed.");
             })
         });
     }

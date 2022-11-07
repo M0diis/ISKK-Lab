@@ -41,17 +41,17 @@ public class TicketForListing
 	/// <summary>
 	/// Create instance from DB entity.
 	/// </summary>
-	/// <param name="ticket">DB entity to create from.</param>
+	/// <param name="ticketEntity">DB entity to create from.</param>
 	/// <returns>A corresponding instance.</returns>
-	public static TicketForListing DatabaseToObject(Tickets ticket)
+	public static TicketForListing DatabaseToObject(TicketsEntity ticketEntity)
 	{
 		return new TicketForListing
 		{
-			Id = ticket.id,
-			Title = ticket.title,
-			Description = ticket.description,
-			CreatedTimestamp = ticket.created_timestamp,
-			FK_UserID = ticket.fk_userId
+			Id = ticketEntity.id,
+			Title = ticketEntity.title,
+			Description = ticketEntity.description,
+			CreatedTimestamp = ticketEntity.created_timestamp,
+			FK_UserID = ticketEntity.fk_userId
 		};
 	}
 }

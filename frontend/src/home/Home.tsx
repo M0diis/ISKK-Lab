@@ -19,8 +19,6 @@ class State
     isLoaded: boolean = false;
 
     posts: PostForList[] = [];
- 
-    isDeleting: boolean = false;
 
     /**
      * Makes a shallow clone. Use this to return new state instance from state updates.
@@ -68,19 +66,18 @@ function Home()
                         id : id
                     }
                 }
-            )
-                .then(resp => {
-                    update(() => location.state = "refresh");
-                    
-                    notifySuccess("Post has been deleted.");
-                })
-                .catch(err => {
-                    //notify about operation failure
-                    const msg =
-                        `Deletion of entity '${id}' has failed. ` +
-                        `either entity is not deletable or there was backend failure.`;
-                    notifyFailure(msg);
-                })
+            ).then((res) => {
+                update(() => location.state = "refresh");
+                
+                notifySuccess("Post has been deleted.");
+            })
+            .catch((err) => {
+                //notify about operation failure
+                const msg =
+                    `Deletion of entity '${id}' has failed. ` +
+                    `either entity is not deletable or there was backend failure.`;
+                notifyFailure(msg);
+            })
         });
     }
     

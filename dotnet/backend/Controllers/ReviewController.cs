@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using modkaz.Backend.Interfaces;
 using modkaz.DBs;
 using modkaz.Backend.Models.Entity;
 
@@ -16,6 +17,11 @@ public class ReviewController : ControllerBase
 	/// Logger.
 	/// </summary>
 	private readonly ILogger<ReviewController> _logger;
+	
+	/// <summary>
+	/// Reviews service.
+	/// </summary>
+	private readonly IReviewsService _reviewsService;
 
 	private readonly MyDatabase _database;
 
@@ -24,10 +30,12 @@ public class ReviewController : ControllerBase
 	/// </summary>
 	/// <param name="logger">Logger to use. Injected.</param>
 	/// <param name="database">Database context</param>
-	public ReviewController(ILogger<ReviewController> logger, MyDatabase database)
+	/// <param name="reviewsService">Service for working with reviews</param>
+	public ReviewController(ILogger<ReviewController> logger, MyDatabase database, IReviewsService reviewsService)
 	{
 		_logger = logger;
 		_database = database;
+		_reviewsService = reviewsService;
 	}
 
 	/// <summary>
@@ -39,20 +47,20 @@ public class ReviewController : ControllerBase
 	// [Authorize(Roles = "user")]
 	[ProducesResponseType(typeof(List<ReviewForListing>), StatusCodes.Status200OK)]
 	[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-	public IActionResult List()
+	public async Task<IActionResult> List()
 	{
 		_logger.LogInformation("Got request to /backend/review/list");
-		
-		var reviews = _database.Reviews
-			.OrderBy(it => it.id)
-			.Select(it => ReviewForListing.DatabaseToObject(it))
-			.ToList();
 		
 		var users = _database.Users
 			.OrderBy(it => it.id)
 			.Select(it => UserForListing.DatabaseToObject(it))
 			.ToList();
 		
+		var reviews = (await _reviewsService.GetReviewsAsync())
+			.OrderBy(it => it.id)
+			.Select(it => ReviewForListing.DatabaseToObject(it))
+			.ToList();
+
 		foreach (var review in reviews)
 		{
 			foreach (var user in users.Where(user => review.FK_UserID == user.Id))

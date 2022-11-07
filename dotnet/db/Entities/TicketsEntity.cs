@@ -3,25 +3,25 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace modkaz.DBs.Entities;
 
-public partial class Users
+[Table("tickets")]
+public partial class TicketsEntity
 {
     [Key]
     [Column(TypeName = "int(11)")]
     public int id { get; set; }
     [Required]
     [Column(TypeName = "mediumtext")]
-    public string name { get; set; }
+    public string title { get; set; }
     [Required]
     [Column(TypeName = "mediumtext")]
-    public string email { get; set; }
-    [Required]
-    [Column(TypeName = "mediumtext")]
-    public string password { get; set; }
+    public string description { get; set; }
     [Required]
     [Column(TypeName = "tinyint(1)")]
-    public bool admin { get; set; }
+    public bool closed { get; set; }
     [Required]
     [Column(TypeName = "timestamp")]
     public DateTime created_timestamp { get; set; }
+    [Column(TypeName = "int(11)")]
+    public int fk_userId { get; set; }
 }
 

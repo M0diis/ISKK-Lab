@@ -11,13 +11,13 @@ namespace modkaz.DBs
 
         public virtual DbSet<DemoEntities> DemoEntities { get; set; }
         
-        public virtual DbSet<Posts> Posts { get; set; }
+        public virtual DbSet<PostsEntity> Posts { get; set; }
         
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<UsersEntity> Users { get; set; }
         
-        public virtual DbSet<Reviews> Reviews { get; set; }
+        public virtual DbSet<ReviewsEntity> Reviews { get; set; }
         
-        public virtual DbSet<Tickets> Tickets { get; set; }
+        public virtual DbSet<TicketsEntity> Tickets { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

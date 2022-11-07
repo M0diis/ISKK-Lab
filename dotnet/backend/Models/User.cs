@@ -44,17 +44,17 @@ public class UserForListing
 	/// <summary>
 	/// Create instance from DB entity.
 	/// </summary>
-	/// <param name="user">DB entity to create from.</param>
+	/// <param name="userEntity">DB entity to create from.</param>
 	/// <returns>A corresponding instance.</returns>
-	public static UserForListing DatabaseToObject(Users user)
+	public static UserForListing DatabaseToObject(UsersEntity userEntity)
 	{
 		return new UserForListing
 		{
-			Id = user.id,
-			Name = user.name,
-			Password = user.password,
-			CreatedTimestamp = user.created_timestamp,
-			Admin = user.admin
+			Id = userEntity.id,
+			Name = userEntity.name,
+			Password = userEntity.password,
+			CreatedTimestamp = userEntity.created_timestamp,
+			Admin = userEntity.admin
 		};
 	}
 }
