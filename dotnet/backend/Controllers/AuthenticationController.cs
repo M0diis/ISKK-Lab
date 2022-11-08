@@ -1,11 +1,11 @@
-using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using db;
+using Microsoft.AspNetCore.Mvc;
+using modkaz.Backend.Interfaces.Service;
 using modkaz.Backend.Models;
 using modkaz.Backend.Util;
 
-
-namespace modkaz.Backend.Controllers.Authentication;
+namespace modkaz.Backend.Controllers;
 
 [ApiController]
 [Route("backend/auth")]
@@ -15,17 +15,18 @@ public class AuthenticationController : ControllerBase
 	/// Logger.
 	/// </summary>
 	private readonly ILogger<AuthenticationController> _logger;
-	
-	private readonly MyDatabase _database;
+
+	private readonly IUsersService _usersService;
+
 	/// <summary>
 	/// Constructor.
 	/// </summary>
 	/// <param name="logger">Logger. Injected.</param>
-	/// <param name="database">Database context</param>
-	public AuthenticationController(ILogger<AuthenticationController> logger, MyDatabase database)
+	/// <param name="usersService">Users service. Injected.</param>
+	public AuthenticationController(ILogger<AuthenticationController> logger, IUsersService usersService)
 	{
 		_logger = logger;
-		_database = database;
+		_usersService = usersService;
 	}
 
 	/// <summary>
@@ -40,15 +41,19 @@ public class AuthenticationController : ControllerBase
 	[ProducesResponseType(typeof(LogInResponse), StatusCodes.Status200OK)]
 	[ProducesResponseType(StatusCodes.Status400BadRequest)]
 	[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-	public IActionResult LogIn(string username, string password)
+	public async Task<IActionResult> LogIn(string username, string password)
 	{
 		_logger.LogInformation("Got request to /backend/auth/login");
-		
-		if( username == null )
-			throw new ArgumentException("Argument 'username' is null.");
 
-		if( password == null )
+		if (username == null)
+		{
+			throw new ArgumentException("Argument 'username' is null.");
+		}
+
+		if (password == null)
+		{
 			throw new ArgumentException("Argument 'password' is null.");
+		}
 		
 		if( username == "a" && password == "b" )
 		{
@@ -72,9 +77,9 @@ public class AuthenticationController : ControllerBase
 			return Ok(respDev);
 		}
 
-		var user = _database
-			.Users.Where(x => x.name == username && x.password == password)
-			.ToList().First();
+		var user = (await _usersService.GetAllAsync())
+			.Where(x => x.name == username && x.password == password)
+			.ToList().FirstOrDefault();
 
 		if (user == null)
 		{
